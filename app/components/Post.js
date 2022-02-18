@@ -2,6 +2,7 @@
  import queryString from 'query-string'
  import { fetchComments } from '../utils/api';
  import Loading from './Loading'
+ import Card from './Card'
 
  function decodeHTML(str) {
      const txt = document.createElement('textarea')
@@ -40,15 +41,28 @@
                  <Loading />
                ) : (
                  <div className="feed">
+                   <Card
+                     id={post.id}
+                     author={post.by}
+                     title={post.title}
+                     url={post.url}
+                     date={post.time}
+                     comments={post.kids}
+                   />
                    {comments.map((comment) => (
-                     <div key={comment.id} className="content-card">
+                     <div key={comment.id} className="content-card comment">
                        <div className="post-detail">
                          <p>
-                           By {comment.by}, on{' '}
-                           {new Date(comment.time * 1000).toLocaleString()}{' '}
+                           By {comment.by},{' '}
+                           <span className="fade">
+                             on {new Date(comment.time * 1000).toLocaleString()}{' '}
+                           </span>
                          </p>
                        </div>
-                       <p className="margin-top-sm" dangerouslySetInnerHTML={{__html: comment.text}}></p>
+                       <p
+                         className="margin-top-sm"
+                         dangerouslySetInnerHTML={{ __html: comment.text }}
+                       ></p>
                      </div>
                    ))}
                  </div>

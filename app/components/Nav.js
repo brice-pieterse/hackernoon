@@ -15,7 +15,7 @@ export default function Nav(){
           <NavLink to="/" className="nav-link">
             Top
           </NavLink>
-          <NavLink to="/battle" className="nav-link">
+          <NavLink to="/new" className="nav-link">
             New
           </NavLink>
         </div>

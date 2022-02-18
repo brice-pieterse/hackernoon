@@ -44,6 +44,10 @@ body {
     margin-bottom: 20px;
 }
 
+.content-card.comment {
+    background-color: rgba(236, 236, 245, 0.75);
+}
+
 .post-detail {
     display: flex;
     justify-content: center;
@@ -85,4 +89,8 @@ p.margin-bottom-sm {
 
 p.margin-top-sm {
     margin-top: 16px;
+}
+
+span.fade {
+    opacity: 0.5;
 }

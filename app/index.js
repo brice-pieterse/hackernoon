@@ -5,7 +5,7 @@ import './index.css'
 import Loading from './components/Loading'
 import Nav from './components/Nav'
 
-import Top from './components/Top'
+import Feed from './components/Feed';
 import Post from './components/Post'
 
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
@@ -22,7 +22,8 @@ class App extends React.Component {
               <div className="container">
                 <React.Suspense fallback={<Loading />}>
                   <Routes>
-                    <Route exact path="/" element={<Top />} />
+                    <Route exact path="/" element={<Feed feed="top" />} />
+                    <Route exact path="/new" element={<Feed feed="new" />} />
                     <Route path="/post" element={<Post />} />
                   </Routes>
                 </React.Suspense>

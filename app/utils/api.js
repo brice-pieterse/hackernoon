@@ -43,17 +43,23 @@ export function fetchComments(id){
 
 
 export function fetchNewStories() {
+
+    console.log('here');
   const endpoint =
     'https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty';
 
-  return fetch(endpoint)
-    .then((res = res.json()))
-    .then((data) => {
-      if (!data) {
-        throw new Error(data.message);
-      }
-      console.log('fetched new stories', data);
-    });
+    return fetch(endpoint)
+        .then((res) => res.json())
+        .then((data) => {
+        const storyData = [];
+        if (!data) {
+            throw new Error(data.message);
+        }
+        for (let i = 0; i < 3; i++) {
+            storyData.push(fetchStory(data[i]));
+        }
+        return Promise.all(storyData);
+        });
 }
 
 export default function fetchTopStories() {

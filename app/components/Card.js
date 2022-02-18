@@ -15,11 +15,24 @@ export default function Card({ id, author, title, url, date, comments }){
           {title}
         </a>
         <div className="post-detail">
-          <p> By {author}, on {new Date(date * 1000).toLocaleString()} </p>
-          <Link style={styles.comments} to={{
-            pathname: '/post',
-            search: `?id=${id}`
-          }}>with {comments.length} comments</Link>
+          <p>
+            {' '}
+            By {author},{' '}
+            <span className="fade">
+              on {new Date(date * 1000).toLocaleString()}
+            </span>
+          </p>
+          {comments && (
+            <Link
+              style={styles.comments}
+              to={{
+                pathname: '/post',
+                search: `?id=${id}`,
+              }}
+            >
+              with {comments.length} comments
+            </Link>
+          )}
         </div>
       </div>
     );
