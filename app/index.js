@@ -6,6 +6,7 @@ import Loading from './components/Loading'
 import Nav from './components/Nav'
 
 import Top from './components/Top'
+import Post from './components/Post'
 
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
@@ -22,6 +23,7 @@ class App extends React.Component {
                 <React.Suspense fallback={<Loading />}>
                   <Routes>
                     <Route exact path="/" element={<Top />} />
+                    <Route path="/post" element={<Post />} />
                   </Routes>
                 </React.Suspense>
               </div>

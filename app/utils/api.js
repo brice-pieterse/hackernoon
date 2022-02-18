@@ -1,5 +1,5 @@
 
-function fetchStory(storyId) {
+export function fetchStory(storyId) {
   const endpoint = window.encodeURI(
     `https://hacker-news.firebaseio.com/v0/item/${storyId}.json?print=pretty`
   );
@@ -12,6 +12,33 @@ function fetchStory(storyId) {
       }
       return data;
     });
+}
+
+export function fetchComments(id){
+    const endpoint = window.encodeURI(
+      `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`
+    );
+
+    const fetchPost = fetch(endpoint)
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data) {
+          throw new Error(data.message);
+        }
+        return data;
+      });
+
+      return fetchPost
+      .then(post => {
+          const comments = []
+          for (let i = 0; i < post.kids.length; i++) {
+            comments.push(fetchStory(post.kids[i]));
+          }
+          return {
+              post: post,
+              comments: Promise.all(comments)
+            }
+      })
 }
 
 
