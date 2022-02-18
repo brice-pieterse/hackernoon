@@ -13,8 +13,6 @@ export default class Top extends React.Component {
             this.setState({
                 stories: stories
             })
-
-            console.log(this.state.stories)
         })
     }
 
@@ -28,7 +26,6 @@ export default class Top extends React.Component {
                     ({ id, by, title, url, time, kids }) => {
                       return (
                         <div key={id}>
-                          {' '}
                           <Card
                             id={id}
                             author={by}
@@ -36,7 +33,7 @@ export default class Top extends React.Component {
                             url={url}
                             date={time}
                             comments={kids}
-                          />{' '}
+                          />
                         </div>
                       );
                     }
