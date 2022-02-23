@@ -4,12 +4,13 @@ import './index.css'
 
 import Loading from './components/Loading'
 import Nav from './components/Nav'
-
-import Feed from './components/Feed';
-import Post from './components/Post'
+import NotFound from './components/NotFound'
 
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { ThemeProvider } from './contexts/theme'
+
+const Feed = React.lazy(() => import('./components/Feed'))
+const Post = React.lazy(() => import('./components/Post'))
 
 class App extends React.Component {
     state = {
@@ -23,19 +24,20 @@ class App extends React.Component {
     render(){
         return (
           <Router>
-              <ThemeProvider value={this.state}>
-                <div className={`bg ${this.state.theme}`}>
+            <ThemeProvider value={this.state}>
+              <div className={`bg ${this.state.theme}`}>
                 <Nav />
                 <div className="container">
-                    <React.Suspense fallback={<Loading />}>
+                  <React.Suspense fallback={<Loading />}>
                     <Routes>
-                        <Route exact path="/" element={<Feed feed="top" />} />
-                        <Route exact path="/new" element={<Feed feed="new" />} />
-                        <Route path="/post" element={<Post />} />
+                      <Route exact path="/" element={<Feed feed="top" />} />
+                      <Route exact path="/new" element={<Feed feed="new" />} />
+                      <Route path="/post" element={<Post />} />
+                      <Route path="*" element={<NotFound />}></Route>
                     </Routes>
-                    </React.Suspense>
+                  </React.Suspense>
                 </div>
-                </div>
+              </div>
             </ThemeProvider>
           </Router>
         );

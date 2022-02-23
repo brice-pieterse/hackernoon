@@ -3,6 +3,7 @@
  import { fetchComments } from '../utils/api';
  import Loading from './Loading'
  import Card from './Card'
+ import { ThemeConsumer } from '../contexts/theme'
  
  export default class Post extends React.Component {
 
@@ -29,40 +30,50 @@
         const { post, comments } = this.state
 
          return (
-           <div className="feed-wrapper">
-             <div className="max-width">
-               {post === null ? (
-                 <Loading />
-               ) : (
-                 <div className="feed">
-                   <Card
-                     id={post.id}
-                     author={post.by}
-                     title={post.title}
-                     url={post.url}
-                     date={post.time}
-                     comments={post.kids}
-                   />
-                   {comments.map((comment) => (
-                     <div key={comment.id} className="content-card comment">
-                       <div className="post-detail">
-                         <p>
-                           By {comment.by},{' '}
-                           <span className="fade">
-                             on {new Date(comment.time * 1000).toLocaleString()}{' '}
-                           </span>
-                         </p>
-                       </div>
-                       <p
-                         className="margin-top-sm"
-                         dangerouslySetInnerHTML={{ __html: comment.text }}
-                       ></p>
+           <ThemeConsumer>
+             {({ theme }) => (
+               <div className="feed-wrapper">
+                 <div className="max-width">
+                   {post === null ? (
+                     <Loading />
+                   ) : (
+                     <div className="feed">
+                       <Card
+                         id={post.id}
+                         author={post.by}
+                         title={post.title}
+                         url={post.url}
+                         date={post.time}
+                         comments={post.kids}
+                       />
+                       {comments.map((comment) => (
+                         <div
+                           key={comment.id}
+                           className={`content-card comment ${theme}`}
+                         >
+                           <div className="post-detail">
+                             <p className={theme}>
+                               By {comment.by},{' '}
+                               <span className={`fade ${theme}`}>
+                                 on{' '}
+                                 {new Date(
+                                   comment.time * 1000
+                                 ).toLocaleString()}{' '}
+                               </span>
+                             </p>
+                           </div>
+                           <p
+                             className={`body margin-top-sm ${theme}`}
+                             dangerouslySetInnerHTML={{ __html: comment.text }}
+                           ></p>
+                         </div>
+                       ))}
                      </div>
-                   ))}
+                   )}
                  </div>
-               )}
-             </div>
-           </div>
+               </div>
+             )}
+           </ThemeConsumer>
          );
      }
 

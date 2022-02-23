@@ -67,6 +67,10 @@ body {
     background-color: rgba(236, 236, 245, 0.75);
 }
 
+.content-card.comment.dark {
+    background-color: rgb(73, 73, 73);
+}
+
 .post-detail {
     display: flex;
     justify-content: center;
@@ -106,6 +110,9 @@ p.dark, a.dark, title.dark, .nav-link.dark {
     color: #00d6c1;
 }
 
+p.body.dark {
+    color: white;
+}
 
 p.margin-bottom-sm {
     margin-bottom: 16px;
