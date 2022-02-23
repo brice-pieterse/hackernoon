@@ -6,12 +6,24 @@ body {
 
 /* containers and alignment */
 
+.bg {
+    min-height: 100vw;
+}
+
+.bg.light {
+    background-color: ghostwhite;
+}
+
+.bg.dark {
+    background-color: rgb(29, 29, 29);
+}
+
 .max-width {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80vw;
-    
+    position: relative;
 }
 
 .horizontal {
@@ -34,7 +46,6 @@ body {
 }
 
 .content-card {
-    background-color: white;
     border-radius: 20px;
     padding: 20px 30px 20px 30px;
     display: flex;
@@ -42,6 +53,14 @@ body {
     justify-content: center;
     align-items: flex-start;
     margin-bottom: 20px;
+}
+
+.content-card.light {
+    background-color: white;
+}
+
+.content-card.dark {
+    background-color: rgb(73, 73, 73);
 }
 
 .content-card.comment {
@@ -83,6 +102,11 @@ p, a {
     line-height: 40px;
 }
 
+p.dark, a.dark, title.dark, .nav-link.dark {
+    color: #00d6c1;
+}
+
+
 p.margin-bottom-sm {
     margin-bottom: 16px;
 }
@@ -93,4 +117,22 @@ p.margin-top-sm {
 
 span.fade {
     opacity: 0.5;
+}
+
+span.fade.dark {
+    color: white;
+    opacity: 0.65;
+}
+
+/* buttons */
+
+.theme-toggler {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-height: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    line-height: 32px;
 }

@@ -43,8 +43,6 @@ export function fetchComments(id){
 
 
 export function fetchNewStories() {
-
-    console.log('here');
   const endpoint =
     'https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty';
 

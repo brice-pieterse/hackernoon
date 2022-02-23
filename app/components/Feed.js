@@ -2,6 +2,7 @@ import React from 'react';
 import { fetchNewStories } from '../utils/api'
 import fetchTopStories from '../utils/api'
 import Card from './Card'
+import Loading from './Loading'
 
 export default class Feed extends React.Component {
     state = {
@@ -66,7 +67,7 @@ export default class Feed extends React.Component {
                 </div>
               )}
 
-              {this.state.stories.length === 0 && <h1>Empty Feed</h1>}
+              {this.state.stories.length === 0 && <Loading />}
             </div>
           </div>
         );

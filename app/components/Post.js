@@ -3,12 +3,6 @@
  import { fetchComments } from '../utils/api';
  import Loading from './Loading'
  import Card from './Card'
-
- function decodeHTML(str) {
-     const txt = document.createElement('textarea')
-     txt.innerHTML = str
-     return txt.value
- }
  
  export default class Post extends React.Component {
 
